@@ -10,26 +10,22 @@ namespace AddressBook
         public string lastName;
         public string city;
         public string state;
-        public string address;
         public string zip;
-        public long phoneNumber;
-        public string email;
+        public string phoneNumber;
         
-        public PersonalDetail(string firstName,string lastName,string city,string state,string address,string zip,long phoneNumber,string email)
+        public PersonalDetail(string firstName,string lastName,string city,string state,string zip,string phoneNumber)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.city = city;
             this.state = state;
-            this.address = address;
             this.zip = zip;
             this.phoneNumber = phoneNumber;
-            this.email = email;
         }
 
         public void Display()
         {
-            Console.WriteLine("\nFirstName: "+firstName+"\nLastName: "+lastName+"\nCity: "+city+"\nState: "+state+"\nAddress: "+address+"\nZip Code: "+zip+"\nMobileNumber: "+phoneNumber);
+            Console.WriteLine("\nFirstName: "+firstName+"\nLastName: "+lastName+"\nCity: "+city+"\nState: "+state+"\nZip Code: "+zip+"\nMobileNumber: "+phoneNumber);
         }
     }
 }
