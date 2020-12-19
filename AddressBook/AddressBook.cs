@@ -61,6 +61,27 @@ namespace AddressBook
             }
         }
 
+        /// <summary>
+        /// U4. Delets the contact.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        public void DeletContact(string firstName)
+        {
+            foreach (PersonalDetail Contact in DetailList)
+            {
+                if (firstName.Equals(Contact.firstName))
+                {
+                    DetailList.Remove(Contact);
+                    Console.WriteLine("Contact Deleted Succesfull...");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Contact Not Found");
+                }
+            }
+        }
+
         public void DisplayContact()
         {
             foreach (PersonalDetail Contact in DetailList)

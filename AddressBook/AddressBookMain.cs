@@ -10,7 +10,7 @@ namespace AddressBook
             AddressBok Book = new AddressBok();
             while (true)
             {
-                Console.WriteLine("Enter Choice To Proceed\n1.Add Contact\n2.EditContact\n3.Display\n0.Exit");
+                Console.Write("1.Add Contact\n2.EditContact\n3.Display\n4.Delete\n0.Exit\nEnter Choice To Proceed:  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -24,6 +24,11 @@ namespace AddressBook
                         break;
                     case 3:
                         Book.DisplayContact();
+                        break;
+                    case 4:
+                        Console.Write("Enter FirstName To Delete: ");
+                        string DelName = Console.ReadLine();
+                        Book.DeletContact(DelName);
                         break;
                     case 0:
                         Environment.Exit(0);
