@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace AddressBook
 {
     /// <summary>
@@ -12,26 +12,14 @@ namespace AddressBook
         List<PersonalDetail> DetailList;
         public AddressBok()
         {
-            this.DetailList = new List<PersonalDetail>();
+            DetailList = new List<PersonalDetail>();
         }
         /// <summary>
         /// U2. Add Contact in Contact Book
         /// </summary>
-        public void AddContact()
+        public void AddContact(string firstName, string lastName, string city, string state, string zip, string phoneNumber)
         {
-            Console.Write("Enter First Name: ");
-            string FirstName = Console.ReadLine();
-            Console.Write("Enter Last Name: ");
-            string LastName = Console.ReadLine();
-            Console.Write("Enter City: ");
-            string City = Console.ReadLine();
-            Console.Write("Enter State: ");
-            string State = Console.ReadLine();
-            Console.Write("Enter Zip Code: ");
-            string Zip = Console.ReadLine();
-            Console.Write("Enter Phone Number: ");
-            string PhoneNumber = Console.ReadLine();
-            PersonalDetail Person = new PersonalDetail(FirstName, LastName, City, State, Zip, PhoneNumber);
+            PersonalDetail Person = new PersonalDetail(firstName, lastName, city, state,  zip, phoneNumber);
             DetailList.Add(Person);
         }
 
@@ -48,8 +36,20 @@ namespace AddressBook
                 check++;
                 if (Contact.firstName.Equals(fname))
                 {
-                   AddContact();
+                    Console.Write("Enter First Name: ");
+                    string FirstName = Console.ReadLine();
+                    Console.Write("Enter Last Name: ");
+                    string LastName = Console.ReadLine();
+                    Console.Write("Enter City: ");
+                    string City = Console.ReadLine();
+                    Console.Write("Enter State: ");
+                    string State = Console.ReadLine();
+                    Console.Write("Enter Zip Code: ");
+                    string Zip = Console.ReadLine();
+                    Console.Write("Enter Phone Number: ");
+                    string PhoneNumber = Console.ReadLine();
                     DetailList.Remove(Contact);
+                    AddContact(FirstName, LastName, City, State, Zip, PhoneNumber);
                     Console.WriteLine("Contact Updated Successfully...");
                     break;
                 }
@@ -67,15 +67,18 @@ namespace AddressBook
         /// <param name="firstName">The first name.</param>
         public void DeletContact(string firstName)
         {
+            int size=DetailList.Count;
+            int check = 0;
             foreach (PersonalDetail Contact in DetailList)
             {
+                check++;
                 if (firstName.Equals(Contact.firstName))
                 {
                     DetailList.Remove(Contact);
                     Console.WriteLine("Contact Deleted Succesfull...");
                     break;
                 }
-                else
+                else if(size==check)
                 {
                     Console.WriteLine("Contact Not Found");
                 }
@@ -84,9 +87,10 @@ namespace AddressBook
 
         public void DisplayContact()
         {
-            foreach (PersonalDetail Contact in DetailList)
+            foreach (var Contacts in DetailList)
             {
-                Console.WriteLine("\nFirstName: " + Contact.firstName + "\nLastName: " + Contact.lastName + "\nCity: " + Contact.city + "\nState: " + Contact.state + "\nZip Code: " + Contact.zip + "\nMobileNumber: " + Contact.phoneNumber);
+                PersonalDetail detail = Contacts;
+                Console.WriteLine("\nFirstName: " + Contacts.firstName + "\nLastName: " + Contacts.lastName + "\nCity: " + Contacts.city + "\nState: " + Contacts.state + "\nZip Code: " + Contacts.zip + "\nMobileNumber: " + Contacts.phoneNumber);
             }
         }
     }
