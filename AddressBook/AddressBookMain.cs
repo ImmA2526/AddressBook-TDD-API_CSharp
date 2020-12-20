@@ -4,10 +4,12 @@ namespace AddressBook
 {
     class AddressBookMain
     {
+        public static Dictionary<string, AddressBok> DetailDict = new Dictionary<string, AddressBok>();
+
         public static void Main(string[] args)
         {
             Console.WriteLine("*********Welcome To Address Book*********");
-            Dictionary<string, AddressBok> DetailDict = new Dictionary<string, AddressBok>();
+            //Dictionary<string, AddressBok> DetailDict = new Dictionary<string, AddressBok>();
             bool Flag = true;
             Console.Write("\nHow many Address Book U Want :");
             int numberofBook = Convert.ToInt32(Console.ReadLine());
@@ -15,6 +17,12 @@ namespace AddressBook
             {
                 Console.Write("Enter Name of Book: " + i + ":");
                 string BookName = Console.ReadLine();
+                bool Check = DuplicateBook(BookName);
+                if (Check)
+                {
+                    Console.WriteLine("Please Enter Bookname Again");
+                    BookName=Console.ReadLine();
+                }
                 AddressBok addBookName = new AddressBok();
                 DetailDict.Add(BookName, addBookName);
             }
@@ -99,6 +107,12 @@ namespace AddressBook
         {
             Console.Write("Enter First Name: ");
             string FirstName = Console.ReadLine();
+            bool dup = AddBookName.DuplicateName(FirstName);
+            if (dup)
+            {
+                Console.Write("Enter First Name: ");
+                FirstName = Console.ReadLine();
+            }
             Console.Write("Enter Last Name: ");
             string LastName = Console.ReadLine();
             Console.Write("Enter City: ");
@@ -110,6 +124,26 @@ namespace AddressBook
             Console.Write("Enter Phone Number: ");
             string PhoneNumber = Console.ReadLine();
             AddBookName.AddContact(FirstName, LastName,  City, State, Zip, PhoneNumber);
+        }
+
+        /// <summary>
+        /// U7 Check Duplicate Book NAme
+        /// </summary>
+        /// <param name="bookname"></param>
+        /// <returns></returns>
+        public static bool DuplicateBook(string bookname)
+        {
+            bool Check = false;
+            foreach (var Address in DetailDict)
+            {
+                if (DetailDict.ContainsKey(bookname))
+                {
+                    Check = true;
+                    Console.WriteLine($"{bookname} Address Book Alrdy Present..");
+                    break;
+                }
+            }
+            return Check;
         }
     }
 }

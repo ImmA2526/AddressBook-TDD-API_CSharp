@@ -7,7 +7,7 @@ namespace AddressBook
     /// <summary>
     /// U5. Create Contact Person List with Multiple Contact.
     /// </summary>
-    class AddressBok
+    public class AddressBok
     {
         List<PersonalDetail> DetailList;
         public AddressBok()
@@ -83,6 +83,26 @@ namespace AddressBook
                     Console.WriteLine("Contact Not Found");
                 }
             }
+        }
+
+        /// <summary>
+        /// UC7. Check Duplicate Name
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <returns></returns>
+        public bool DuplicateName(string FirstName)
+        {
+            bool duplicate = false;
+            foreach (PersonalDetail Name in DetailList)
+            {
+                if (Name.firstName.Equals(FirstName))
+                {
+                    duplicate = true;
+                    Console.WriteLine($"{FirstName} is Alredy Present");
+                    break;
+                }
+            }
+            return duplicate;
         }
 
         public void DisplayContact()
