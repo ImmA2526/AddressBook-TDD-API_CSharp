@@ -105,6 +105,37 @@ namespace AddressBook
             return duplicate;
         }
 
+        /// <summary>
+        /// U8. Search Contact By City
+        /// </summary>
+        /// <param name="place"></param>
+        public void SearchPersonByCity(string place)
+        {
+            bool exits = IsPlaceExist(place);
+            if (exits)
+            {
+                foreach (PersonalDetail user in DetailList.FindAll(x => x.city.Equals(place)).ToList())
+                {
+                    user.Display();
+                }
+                foreach (PersonalDetail user in DetailList.FindAll(x => x.state.Equals(place)).ToList())
+                {
+                    user.Display();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Contect not Found From {0}", place);
+            }
+        }
+        public bool IsPlaceExist(string place)
+        {
+            if (this.DetailList.Any(e => e.city == place) || this.DetailList.Any(e => e.state == place))
+                return true;
+            else
+                return false;
+        }
+
         public void DisplayContact()
         {
             foreach (var Contacts in DetailList)
