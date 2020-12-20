@@ -36,7 +36,7 @@ namespace AddressBook
             while (Flag)
             {
                 Console.WriteLine("1.Add Contact\n2.EditContact\n3.Display\n4.Delete \n5.SearchBy City_State & Show Count" +
-                    "\n6.Sort Detail\n7.Sort\n8.Write File(Save)\n9.Read File\n0.Exit\nEnter Choice To Proceed:  ");
+                    "\n6.Sort Detail\n7.Sort\n8.Write File(Save)\n0.Exit\nEnter Choice To Proceed:  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -125,14 +125,52 @@ namespace AddressBook
                     case 8:
                         Console.WriteLine("Enter AddressBook Name To Saved Contacts");
                         string saveContactName = Console.ReadLine();
-                        DetailDict[saveContactName].WriteDetail_TextFile();
-                        Console.Write("Contact Save in Text File");
+                        bool repeat = true;
+                        while (repeat)
+                        {
+                            Console.WriteLine("\n....Enter Choice....\n 1.Write Contact in Csv\n2.Read Contact From Csv\n3.Write Contact in Text\n4.Read Contact From Text\n0.Exit");
+                            int PrintContacts = Convert.ToInt32(Console.ReadLine());
+                            switch (PrintContacts)
+                            {
+                                case 1:
+                                    Console.WriteLine("Enter AddressBook Name To Write CSV Contacts");
+                                    DetailDict[saveContactName].WriteDetail_CsvFile();
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Enter AddressBook Name To Read CSV Contacts");
+                                    string readContactName = Console.ReadLine();
+                                    DetailDict[readContactName].ReadDetail_CsvFile();
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Enter AddressBook Name To Write Text Contacts");
+                                    string saveTextContact = Console.ReadLine();
+                                    DetailDict[saveTextContact].WriteDetail_TextFile();
+                                    break;
+                                case 4:
+                                    Console.WriteLine("Enter AddressBook Name To Read Text Contacts");
+                                    string readTextContact = Console.ReadLine();
+                                    DetailDict[readTextContact].ReadDetail_TextFile();
+                                    break;
+                                case 0:
+                                    Console.WriteLine(".......Main.......");
+                                    repeat = false;
+                                    break;
+                            }
+                        }
                         break;
-                    case 9:
-                        Console.WriteLine("Enter AddressBook Name To Saved Contacts");
-                        string readContactName = Console.ReadLine();
-                        DetailDict[readContactName].ReadDetail_TextFile();
-                        break;
+                    /*case 9:
+                        Console.WriteLine("1.ToText\n2.ToText\n3.ToJSon\nEnter Your Choice :");
+                        int ReadContacts = Convert.ToInt32(Console.ReadLine());
+                        switch (ReadContacts)
+                        {
+                            case 1:
+                              
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                        break;*/
                     case 0:
                         Environment.Exit(0);
                         break;

@@ -180,15 +180,28 @@ namespace AddressBook
         }
 
         /// <summary>
-        /// Uc 13. Uc14 Read Write File
+        /// UC 13 Writes the detail text file.
         /// </summary>
         public void WriteDetail_TextFile()
         {
             FileReadWrite.WriteDetail_TextFile(DetailList);
             Console.Write("Contact Stored in File.");
         }
-
         public void ReadDetail_TextFile()
+        {
+            FileReadWrite.textReadFile();
+        }
+
+        /// <summary>
+        /// Uc14 Read Write  CSV File
+        /// </summary>
+        public void WriteDetail_CsvFile()
+        {
+            FileReadWrite.WriteDetail_CsvFile(DetailList);
+            Console.Write("Contact Stored in File.");
+        }
+
+        public void ReadDetail_CsvFile()
         {
             FileReadWrite.readFile();
         }
@@ -201,5 +214,6 @@ namespace AddressBook
                 Console.WriteLine("\nFirstName: " + Contacts.firstName + "\nLastName: " + Contacts.lastName + "\nCity: " + Contacts.city + "\nState: " + Contacts.state + "\nZip Code: " + Contacts.zip + "\nMobileNumber: " + Contacts.phoneNumber);
             }
         }
+
     }
 }

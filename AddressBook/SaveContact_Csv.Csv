@@ -1,4 +1,2 @@
-FName	LName	City	State	Zip	PhoneNumber
-imran	shaikh	pune	maha	889	00993
-nijam	sayyad	pune	maha	998	00099
-prati	maske	mumbai	maha	998	00098	
+FName,LName,City,State,Zip,PhoneNumber
+imran,shaikh,pune,maha,1234,5678
