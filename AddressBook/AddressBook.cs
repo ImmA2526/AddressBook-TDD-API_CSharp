@@ -106,21 +106,28 @@ namespace AddressBook
         }
 
         /// <summary>
-        /// U8. Search Contact By City
+        /// U8-Uc9. Search Contact By City or State 
         /// </summary>
         /// <param name="place"></param>
         public void SearchPersonByCity(string place)
         {
+            List<string> State = new List<string>();
             bool exits = IsPlaceExist(place);
             if (exits)
             {
                 foreach (PersonalDetail user in DetailList.FindAll(x => x.city.Equals(place)).ToList())
                 {
-                    user.Display();
+                    string Name = user.firstName + " " + user.lastName;
+                    State.Add(Name);
                 }
                 foreach (PersonalDetail user in DetailList.FindAll(x => x.state.Equals(place)).ToList())
                 {
-                    user.Display();
+                    string Name = user.firstName + " " + user.lastName;
+                    State.Add(Name);
+                }
+                foreach (string val in State)
+                {
+                    Console.WriteLine(val);
                 }
             }
             else

@@ -93,7 +93,7 @@ namespace AddressBook
                         }
                         break;
                     case 5:
-                        Console.Write("Enter City :");
+                        Console.Write("Enter City or State : ");
                         string SearchCity = Console.ReadLine();
 
                         foreach (var City in DetailDict.Keys)
