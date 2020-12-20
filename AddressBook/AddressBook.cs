@@ -106,33 +106,38 @@ namespace AddressBook
         }
 
         /// <summary>
-        /// U8-Uc9. Search Contact By City or State 
+        /// U8-Uc9 & 10. Search Contact By City or State 
         /// </summary>
         /// <param name="place"></param>
         public void SearchPersonByCity(string place)
         {
             List<string> State = new List<string>();
             bool exits = IsPlaceExist(place);
+            int city_StateCount = 0;
             if (exits)
             {
                 foreach (PersonalDetail user in DetailList.FindAll(x => x.city.Equals(place)).ToList())
                 {
                     string Name = user.firstName + " " + user.lastName;
                     State.Add(Name);
+                    city_StateCount++;
                 }
                 foreach (PersonalDetail user in DetailList.FindAll(x => x.state.Equals(place)).ToList())
                 {
                     string Name = user.firstName + " " + user.lastName;
                     State.Add(Name);
+                    city_StateCount++;
                 }
+                ///UC 10 Count By Place
+                Console.WriteLine($"Person Form Place: {place} : {city_StateCount}");
                 foreach (string val in State)
                 {
-                    Console.WriteLine(val);
+                    Console.WriteLine("Name Of The Person :"+val);
                 }
             }
             else
             {
-                Console.WriteLine($"Contect not Found From {0}", place);
+                Console.WriteLine("Contect not Found ");
             }
         }
         public bool IsPlaceExist(string place)
@@ -142,7 +147,7 @@ namespace AddressBook
             else
                 return false;
         }
-
+/
         public void DisplayContact()
         {
             foreach (var Contacts in DetailList)

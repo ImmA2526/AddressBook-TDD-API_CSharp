@@ -35,7 +35,7 @@ namespace AddressBook
 
             while (Flag)
             {
-                Console.Write("1.Add Contact\n2.EditContact\n3.Display\n4.Delete\n5.Search By City\n0.Exit\nEnter Choice To Proceed:  ");
+                Console.Write("1.Add Contact\n2.EditContact\n3.Display\n4.Delete\n5.SearchBy City_State & Show Count\n0.Exit\nEnter Choice To Proceed:  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -95,9 +95,9 @@ namespace AddressBook
                     case 5:
                         Console.Write("Enter City or State : ");
                         string SearchCity = Console.ReadLine();
-
                         foreach (var City in DetailDict.Keys)
                         {
+                            Console.WriteLine("You Entered: " + SearchCity);
                             DetailDict[City].SearchPersonByCity(SearchCity);
                         }
                         break;
