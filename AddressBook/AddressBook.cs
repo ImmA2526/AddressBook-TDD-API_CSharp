@@ -147,7 +147,19 @@ namespace AddressBook
             else
                 return false;
         }
-/
+
+        /// <summary>
+        /// Uc 11-Sort Alphabettically
+        /// </summary>
+        public void SortByAlphabetically()
+        {
+            List<string> alphabeticallySort = new List<string>();
+            foreach (var sortedDetail in DetailList.OrderBy(Key => Key.firstName))
+            {
+                Console.WriteLine("FirstName: {0}\t, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state,sortedDetail.zip, sortedDetail.phoneNumber);
+            }
+        }
+
         public void DisplayContact()
         {
             foreach (var Contacts in DetailList)
