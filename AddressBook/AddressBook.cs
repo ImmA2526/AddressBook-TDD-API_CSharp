@@ -179,6 +179,20 @@ namespace AddressBook
             }
         }
 
+        /// <summary>
+        /// Uc 13. Read Write File
+        /// </summary>
+        public void WriteDetail_TextFile()
+        {
+            FileReadWrite.WriteDetail_TextFile(DetailList);
+            Console.Write("Contact Stored in File.");
+        }
+
+        public void ReadDetail_TextFile()
+        {
+            FileReadWrite.readFile();
+        }
+
         public void DisplayContact()
         {
             foreach (var Contacts in DetailList)

@@ -36,7 +36,7 @@ namespace AddressBook
             while (Flag)
             {
                 Console.WriteLine("1.Add Contact\n2.EditContact\n3.Display\n4.Delete \n5.SearchBy City_State & Show Count" +
-                    "\n6.Sort Detail\n7.Sort\n0.Exit\nEnter Choice To Proceed:  ");
+                    "\n6.Sort Detail\n7.Sort\n8.Write File(Save)\n9.Read File\n0.Exit\nEnter Choice To Proceed:  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -122,7 +122,17 @@ namespace AddressBook
                                 break;
                         }
                         break;
-
+                    case 8:
+                        Console.WriteLine("Enter AddressBook Name To Saved Contacts");
+                        string saveContactName = Console.ReadLine();
+                        DetailDict[saveContactName].WriteDetail_TextFile();
+                        Console.Write("Contact Save in Text File");
+                        break;
+                    case 9:
+                        Console.WriteLine("Enter AddressBook Name To Saved Contacts");
+                        string readContactName = Console.ReadLine();
+                        DetailDict[readContactName].ReadDetail_TextFile();
+                        break;
                     case 0:
                         Environment.Exit(0);
                         break;
