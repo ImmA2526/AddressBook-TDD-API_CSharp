@@ -6,7 +6,7 @@ namespace AddressBook
 {
     class FileReadWrite
     {
-        public static string path = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\SavedContact.txt";
+        public static string path = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\SaveContact_Csv.Csv";
         public static void WriteDetail_TextFile(List<PersonalDetail> data)
         {
             if (File.Exists(path))
@@ -14,10 +14,10 @@ namespace AddressBook
                 File.WriteAllText(path, string.Empty);
                 using (StreamWriter stremRiter = File.AppendText(path))
                 {
-                    stremRiter.WriteLine("FName\tLName\tCity\tState\tZip\tPhoneNumber");
+                    stremRiter.WriteLine("FName,LName,City,State,Zip,PhoneNumber");
                     foreach (PersonalDetail ReadDetail in data)
                     {
-                        stremRiter.WriteLine(ReadDetail.firstName + "\t" + ReadDetail.lastName + "\t" + ReadDetail.city + "\t" + ReadDetail.state + "\t" + ReadDetail.zip + "\t" + ReadDetail.phoneNumber);
+                        stremRiter.WriteLine(ReadDetail.firstName + "," + ReadDetail.lastName + "," + ReadDetail.city + "," + ReadDetail.state + "," + ReadDetail.zip + "," + ReadDetail.phoneNumber);
                     }
                     stremRiter.Close();
                 }
@@ -32,13 +32,15 @@ namespace AddressBook
         {
             if (File.Exists(path))
             {
-                using (StreamReader stremRider = File.OpenText(path))
+                string[] csvData = File.ReadAllLines(path);
+                foreach (string data in csvData)
                 {
-                    string data = "";
-                    while ((data = stremRider.ReadLine()) != null)
+                    string[] csv = data.Split(",");
+                    foreach (string sdata in csv)
                     {
-                        Console.WriteLine(data);
+                        Console.Write(sdata +" ");
                     }
+                    Console.WriteLine();
                 }
             }
             else
