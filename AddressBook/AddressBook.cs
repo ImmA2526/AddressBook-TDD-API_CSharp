@@ -156,7 +156,26 @@ namespace AddressBook
             List<string> alphabeticallySort = new List<string>();
             foreach (var sortedDetail in DetailList.OrderBy(Key => Key.firstName))
             {
-                Console.WriteLine("FirstName: {0}\t, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state,sortedDetail.zip, sortedDetail.phoneNumber);
+                Console.WriteLine("FirstName: {0}, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state,sortedDetail.zip, sortedDetail.phoneNumber);
+            }
+        }
+
+        /// <summary>
+        ///UC12. Sort By State or City 
+        /// </summary>
+        public void SortByState()
+        {
+            foreach (var sortedDetail in DetailList.OrderBy(Key => Key.state))
+            {
+                Console.WriteLine("FirstName: {0}, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state, sortedDetail.zip, sortedDetail.phoneNumber);
+            }
+        }
+
+        public void SortByCity()
+        {
+            foreach (var sortedDetail in DetailList.OrderBy(Key => Key.city))
+            {
+                Console.WriteLine("FirstName: {0}, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state, sortedDetail.zip, sortedDetail.phoneNumber);
             }
         }
 

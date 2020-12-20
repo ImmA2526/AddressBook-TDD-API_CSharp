@@ -35,7 +35,8 @@ namespace AddressBook
 
             while (Flag)
             {
-                Console.WriteLine("1.Add Contact\n2.EditContact\n3.Display\n4.Delete\n5.SearchBy City_State & Show Count\n6.Sort Detail\n0.Exit\nEnter Choice To Proceed:  ");
+                Console.WriteLine("1.Add Contact\n2.EditContact\n3.Display\n4.Delete \n5.SearchBy City_State & Show Count" +
+                    "\n6.Sort Detail\n7.Sort\n0.Exit\nEnter Choice To Proceed:  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -105,6 +106,21 @@ namespace AddressBook
                         Console.Write("Enter AddressBook Name For Sorting: ");
                         string sortBookName = Console.ReadLine();
                         DetailDict[sortBookName].SortByAlphabetically();
+                        break;
+                    case 7:
+                        Console.WriteLine("Enter Bookname To Sort Contact: ");
+                        string sortCityStateBookname = Console.ReadLine();
+                        Console.WriteLine("Choose option for Sort\n1.By City \n2.By State");
+                        int sortState_City = Convert.ToInt32(Console.ReadLine());
+                        switch (sortState_City)
+                        {
+                            case 1:
+                                DetailDict[sortCityStateBookname].SortByState();
+                                break;
+                            case 2:
+                                DetailDict[sortCityStateBookname].SortByCity();
+                                break;
+                        }
                         break;
 
                     case 0:
