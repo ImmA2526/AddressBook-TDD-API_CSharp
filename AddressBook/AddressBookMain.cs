@@ -158,19 +158,6 @@ namespace AddressBook
                             }
                         }
                         break;
-                    /*case 9:
-                        Console.WriteLine("1.ToText\n2.ToText\n3.ToJSon\nEnter Your Choice :");
-                        int ReadContacts = Convert.ToInt32(Console.ReadLine());
-                        switch (ReadContacts)
-                        {
-                            case 1:
-                              
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                        break;*/
                     case 0:
                         Environment.Exit(0);
                         break;
