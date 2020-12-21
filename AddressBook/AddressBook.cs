@@ -170,7 +170,6 @@ namespace AddressBook
                 Console.WriteLine("FirstName: {0}, LastName: {1}, City: {2}, state: {3}, Zip: {4}, PhoneNumber: {5}", sortedDetail.firstName, sortedDetail.lastName, sortedDetail.city, sortedDetail.state, sortedDetail.zip, sortedDetail.phoneNumber);
             }
         }
-
         public void SortByCity()
         {
             foreach (var sortedDetail in DetailList.OrderBy(Key => Key.city))
@@ -215,5 +214,16 @@ namespace AddressBook
             }
         }
 
+        /// <summary>
+        /// Uc 15 Read Writes the detail j son file.
+        /// </summary>
+        public void WriteDetailJSonFile()
+        {
+            FileReadWrite.writeJSONFile(DetailList);
+        }
+        public void ReadDetail_JSonFile()
+        {
+            FileReadWrite.readJSONFile();
+        }
     }
 }

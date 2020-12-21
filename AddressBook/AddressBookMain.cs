@@ -128,7 +128,7 @@ namespace AddressBook
                         bool repeat = true;
                         while (repeat)
                         {
-                            Console.WriteLine("\n....Enter Choice....\n 1.Write Contact in Csv\n2.Read Contact From Csv\n3.Write Contact in Text\n4.Read Contact From Text\n0.Exit");
+                            Console.WriteLine("\n....Enter Choice....\n 1.Write Contact in Csv\n2.Read Contact From Csv\n3.Write Contact in Text\n4.Read Contact From Text\n5.Write Contact in JSon\n6.Read Contact From Json\n0.Exit");
                             int PrintContacts = Convert.ToInt32(Console.ReadLine());
                             switch (PrintContacts)
                             {
@@ -150,6 +150,16 @@ namespace AddressBook
                                     Console.WriteLine("Enter AddressBook Name To Read Text Contacts");
                                     string readTextContact = Console.ReadLine();
                                     DetailDict[readTextContact].ReadDetail_TextFile();
+                                    break;
+                                case 5:
+                                    Console.WriteLine("Enter AddressBook Name To Write Json File ");
+                                    string saveJsonContact = Console.ReadLine();
+                                    DetailDict[saveJsonContact].WriteDetailJSonFile();
+                                    break;
+                                case 6:
+                                    Console.WriteLine("Enter AddressBook Name To Read JsonFile");
+                                    string readContact = Console.ReadLine();
+                                    DetailDict[readContact].ReadDetail_JSonFile();
                                     break;
                                 case 0:
                                     Console.WriteLine(".......Main.......");

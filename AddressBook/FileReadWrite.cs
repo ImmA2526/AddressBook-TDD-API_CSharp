@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json;
 namespace AddressBook
 {
     class FileReadWrite
     {
-        public static string path = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\SaveContact_Csv.Csv";
-        public static string path1 = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\SavedContact.txt";
+        public static string Csvpath = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\Files\SaveContact_Csv.Csv";
+        public static string Textpath = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\Files\SavedContact.txt";
+        public static string Jsonpath = @"C:\Users\imran\Desktop\BRDLB_WORK\DOT_NET\AddressBook\AddressBook\Files\SavedContact_Json.json";
 
         /// <summary>
         ///UC 13 Writes the detail text file.
@@ -15,10 +17,10 @@ namespace AddressBook
         /// <param name="data">The data.</param>
         public static void WriteDetail_TextFile(List<PersonalDetail> data)
         {
-            if (File.Exists(path1))
+            if (File.Exists(Textpath))
             {
-                File.WriteAllText(path1, string.Empty);
-                using (StreamWriter stremRiter = File.AppendText(path1))
+                File.WriteAllText(Textpath, string.Empty);
+                using (StreamWriter stremRiter = File.AppendText(Textpath))
                 {
                     stremRiter.WriteLine("FName\tLName\tCity\tState\tZip\tPhoneNumber");
                     foreach (PersonalDetail ReadDetail in data)
@@ -36,9 +38,9 @@ namespace AddressBook
 
         public static void textReadFile()
         {
-            if (File.Exists(path1))
+            if (File.Exists(Textpath))
             {
-                using (StreamReader stremRider = File.OpenText(path1))
+                using (StreamReader stremRider = File.OpenText(Textpath))
                 {
                     string data = "";
                     while ((data = stremRider.ReadLine()) != null)
@@ -59,10 +61,10 @@ namespace AddressBook
         /// <param name="data">The data.</param>
         public static void WriteDetail_CsvFile(List<PersonalDetail> data)
         {
-            if (File.Exists(path))
+            if (File.Exists(Csvpath))
             {
-                File.WriteAllText(path, string.Empty);
-                using (StreamWriter stremRiter = File.AppendText(path))
+                File.WriteAllText(Csvpath, string.Empty);
+                using (StreamWriter stremRiter = File.AppendText(Csvpath))
                 {
                     stremRiter.WriteLine("FName,LName,City,State,Zip,PhoneNumber");
                     foreach (PersonalDetail ReadDetail in data)
@@ -80,9 +82,9 @@ namespace AddressBook
 
         public static void readFile()
         {
-            if (File.Exists(path))
+            if (File.Exists(Csvpath))
             {
-                string[] csvData = File.ReadAllLines(path);
+                string[] csvData = File.ReadAllLines(Csvpath);
                 foreach (string data in csvData)
                 {
                     string[] csv = data.Split(",");
@@ -98,5 +100,42 @@ namespace AddressBook
                 Console.WriteLine("File Not Availibe");
             }
         }
+
+        /// <summary>
+        /// UC15. Read and write Json File.
+        /// </summary>
+
+        public static void writeJSONFile(List<PersonalDetail> JsonData)
+        {
+            if (File.Exists(Jsonpath))
+            {
+                JsonSerializer jsonserial = new JsonSerializer();
+                using (StreamWriter streamWriter = new StreamWriter(Jsonpath))
+                using (JsonWriter writer = new JsonTextWriter(streamWriter))
+                {
+                    jsonserial.Serialize(writer, JsonData);
+                }
+                Console.WriteLine("Contact Stored in json");
+            }
+            else
+            {
+                Console.WriteLine("File Not Found");
+            }
+        }
+        public static void readJSONFile()
+        {
+            if (File.Exists(Jsonpath))
+            {
+                IList<PersonalDetail> readJson = JsonConvert.DeserializeObject<IList<PersonalDetail>>(File.ReadAllText(Jsonpath));
+                foreach (PersonalDetail readJsonFile in readJson)
+                {
+                    readJsonFile.Display();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No File Exist..");
+            }
+        } 
     }
-}
+} 
