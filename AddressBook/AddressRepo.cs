@@ -15,7 +15,7 @@ namespace AddressBook
         /// <summary>
         /// UC16 Check Connection
         /// </summary>
-        public  bool CheckConnection()
+        public bool CheckConnection()
         {
             try
             {
@@ -24,13 +24,13 @@ namespace AddressBook
                 this.Connection.Close();
                 return true;
             }
-           
+
             catch (Exception e)
             {
                 return false;
                 Console.WriteLine(e.StackTrace);
             }
-            
+
         }
 
         /// <summary>
@@ -71,6 +71,42 @@ namespace AddressBook
             }
             catch (Exception e)
             {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// UC 17 Edits the name of the record using.
+        /// </summary>
+        /// <param name="Model">The model.</param>
+        /// <exception cref="Exception"></exception>
+        public bool EditRecordUsingName(AddressModel Model)
+        {
+            try
+            {
+                using (this.Connection)
+                {
+                    string editQuery = @"Update AddressBook set lastName= @lastName, address = @address,city = @city, state = @state, zip=@zip,phoneNumber=@phoneNumber ,BookName = @BookName, BookType = @BookType WHERE firstName = @firstName;";
+                    SqlCommand CMD = new SqlCommand(editQuery, this.Connection);
+                    CMD.Parameters.AddWithValue("@firstName", Model.firstName);
+                    CMD.Parameters.AddWithValue("@lastName", Model.lastName);
+                    CMD.Parameters.AddWithValue("@address", Model.address);
+                    CMD.Parameters.AddWithValue("@city", Model.city);
+                    CMD.Parameters.AddWithValue("@state", Model.state);
+                    CMD.Parameters.AddWithValue("@zip", Model.zip);
+                    CMD.Parameters.AddWithValue("@phoneNumber", Model.phoneNumber);
+                    CMD.Parameters.AddWithValue("@BookName", Model.BookName);
+                    CMD.Parameters.AddWithValue("@BookType", Model.BookType);
+                    this.Connection.Open();
+                    var result = CMD.ExecuteNonQuery();
+                    Console.WriteLine("Updated Success......");
+                    this.Connection.Close();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
                 throw new Exception(e.Message);
             }
         }
