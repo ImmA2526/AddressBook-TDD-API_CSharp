@@ -110,5 +110,50 @@ namespace AddressBook
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        /// UC 18 Retrive Particular  record.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        public int RetriveParticularRecord()
+        {
+            try
+            {
+                int count = 0;
+                AddressModel Fetch = new AddressModel();
+                using (this.Connection)
+                {
+                    using (SqlCommand fetch = new SqlCommand(@"Select * from AddressBook WHERE Date between CAST('2020-11-12' as date) and GETDATE();", this.Connection))
+                    {
+                        this.Connection.Open();
+                        using (SqlDataReader reader = fetch.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                               
+                                Fetch.firstName = reader.GetString(0);
+                                Fetch.lastName = reader.GetString(1);
+                                Fetch.address = reader.GetString(2);
+                                Fetch.city = reader.GetString(3);
+                                Fetch.state = reader.GetString(4);
+                                Fetch.zip = reader.GetString(5);
+                                Fetch.phoneNumber = reader.GetString(6);
+                                Fetch.BookName = reader.GetString(7);
+                                Fetch.BookType = reader.GetString(8);
+                                Fetch.Date = reader.GetDateTime(9);
+                                Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", Fetch.firstName, Fetch.lastName, Fetch.address, Fetch.city, Fetch.state, Fetch.zip, Fetch.phoneNumber, Fetch.BookName, Fetch.BookType);
+                                count++;
+                            }
+                        }
+                        return count;
+                        this.Connection.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

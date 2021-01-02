@@ -42,5 +42,17 @@ namespace AddressBookTester
             bool result = updateRepo.EditRecordUsingName(editModel);
             Assert.AreEqual(update, result);
         }
+
+        /// <summary>
+        /// 18 Retrives the data when date range query given.
+        /// </summary>
+        [TestMethod]
+        public void RetriveData_WhenDateRange_QueryGiven()
+        {
+            int retriveParticular = 2;
+            AddressRepo retrive = new AddressRepo();
+            int contactsCount = retrive.RetriveParticularRecord();
+            Assert.AreEqual(retriveParticular,contactsCount);
+        }
     }
 }

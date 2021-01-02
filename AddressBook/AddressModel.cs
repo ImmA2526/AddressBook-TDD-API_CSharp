@@ -15,5 +15,6 @@ namespace AddressBook
         public string phoneNumber { get; set; }
         public string BookName { get; set; }
         public string BookType { get; set; }
+        public DateTime Date { get; set; }
     }
 }
