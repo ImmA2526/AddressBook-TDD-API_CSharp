@@ -35,6 +35,7 @@ namespace AddressBook
 
         /// <summary>
         /// UC 16 Retrives the record.
+        /// UC 19 Retrive Record By City or State (Refactor of Uc 16)
         /// </summary>
         /// <exception cref="Exception"></exception>
         public int RetriveRecord()
@@ -45,6 +46,7 @@ namespace AddressBook
                 using (this.Connection)
                 {
                     int count = 0;
+                    //using (SqlCommand fetch = new SqlCommand(@"Select * from AddressBook ;", this.Connection))
                     using (SqlCommand fetch = new SqlCommand(@"Select * from AddressBook WHERE city='pune' OR state='Maha';", this.Connection))
                     {
                         this.Connection.Open();

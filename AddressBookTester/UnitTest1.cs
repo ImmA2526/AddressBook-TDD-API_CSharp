@@ -8,10 +8,11 @@ namespace AddressBookTester
     public class UnitTest1
     {
         /// <summary>
-        /// Uc 16 Givens the employee payroll when retrieve then return employee payroll from data base.
+        /// Uc 16 Retrive All Data.
+        /// Uc 19 Retrive Data By City or State.(Refactor of UC 16)
         /// </summary>
         [TestMethod]
-        public void AddressBookGiven_RetrieveRecord_ShouldReturnData()
+        public void AddressBookGiven_RetrieveRecordBy_City_State_ShouldReturnData()
         {
             int expected = 6;
             AddressRepo retriveData = new AddressRepo();
