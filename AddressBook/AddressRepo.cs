@@ -157,5 +157,48 @@ namespace AddressBook
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        /// UC 20 Add Contact.
+        /// </summary>
+        /// <param name="Model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public bool AddRecordIN_DB(AddressModel Model)
+        {
+            try
+            {
+                using (this.Connection)
+                {
+                    //string editQuery = @"Update AddressBook set lastName= @lastName, address = @address,city = @city, state = @state, zip=@zip,phoneNumber=@phoneNumber ,BookName = @BookName, BookType = @BookType WHERE firstName = @firstName;";
+                    SqlCommand CMD = new SqlCommand("SpAdd_Address", this.Connection);
+                    CMD.CommandType = CommandType.StoredProcedure;
+                    CMD.Parameters.AddWithValue("@firstName", Model.firstName);
+                    CMD.Parameters.AddWithValue("@lastName", Model.lastName);
+                    CMD.Parameters.AddWithValue("@address", Model.address);
+                    CMD.Parameters.AddWithValue("@city", Model.city);
+                    CMD.Parameters.AddWithValue("@state", Model.state);
+                    CMD.Parameters.AddWithValue("@zip", Model.zip);
+                    CMD.Parameters.AddWithValue("@phoneNumber", Model.phoneNumber);
+                    CMD.Parameters.AddWithValue("@BookName", Model.BookName);
+                    CMD.Parameters.AddWithValue("@BookType", Model.BookType);
+                    CMD.Parameters.AddWithValue("@Date",Model.Date);
+                    this.Connection.Open();
+                    var result = CMD.ExecuteNonQuery();
+                    Console.WriteLine("Contact Added Success......");
+                    this.Connection.Close();
+                    //if (result == 0)
+                    //{
+                    //    return false;
+                    //}
+                   return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //return false;
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
