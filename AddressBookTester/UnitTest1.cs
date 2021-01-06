@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AddressBook;
-
+using System;
 
 namespace AddressBookTester
 {
@@ -80,6 +80,32 @@ namespace AddressBookTester
             AddModel.Date=new System.DateTime(2010,11,02);
             bool result = addContact.AddRecordIN_DB(AddModel);
             Assert.AreEqual(Add, result);
+        }
+
+        /// <summary>
+        /// UC 21 Adds the contact when add query given.
+        /// </summary>
+        [TestMethod]
+        public void AddContact_WhenAddQueryGiven_WithExecutionTime()
+        {
+            AddressRepo addContact = new AddressRepo();
+            AddressModel AddModel = new AddressModel()
+            {
+                firstName = "Nijam",
+                lastName = "Shaikh",
+                address = "Pune",
+                state = "Maha",
+                city = "Dighi",
+                zip = "876677",
+                phoneNumber = "9996789876",
+                BookName = "Friend",
+                BookType = "Family",
+                Date = new DateTime(2020, 11, 02)
+            };
+            DateTime startTime = DateTime.Now;
+            addContact.AddRecordIN_DB(AddModel);
+            DateTime stopTime = DateTime.Now;
+            Console.WriteLine("Duration taken for insertion is {0}", (stopTime - startTime));
         }
     }
 }
