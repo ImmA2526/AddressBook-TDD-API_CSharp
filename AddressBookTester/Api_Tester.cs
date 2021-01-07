@@ -136,5 +136,17 @@ namespace AddressBookTester
             Assert.AreEqual("Friend", dataResponse.BookType);
             Assert.AreEqual(new DateTime(2020, 08, 09), dataResponse.Date);
         }
+
+        /// <summary>
+        ///UC 25  Deletes the record by API.
+        /// </summary>
+        [TestMethod]
+        public void DeleteRecord_BY_API()
+        {
+            RestRequest request = new RestRequest("/AddressBook/4",Method.DELETE);
+            IRestResponse respone = client.Execute(request);
+           Assert.AreEqual(respone.StatusCode, HttpStatusCode.OK);
+            Console.WriteLine(respone.Content);
+        }
     }
 }
