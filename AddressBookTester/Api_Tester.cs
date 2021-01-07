@@ -59,7 +59,7 @@ namespace AddressBookTester
         }
 
         /// <summary>
-        /// UC 23 Add Multiple Address
+        /// UC 23 Add Multiple Contact
         /// </summary>
         [TestMethod]
         public void AddMultiple_Address_BY_API()
@@ -100,6 +100,41 @@ namespace AddressBookTester
                     Assert.AreEqual(record.Date, dataResorce.Date);
                     Console.WriteLine(response.Content);
             });
+        }
+
+        /// <summary>
+        /// 24 Updates the entry by API.
+        /// </summary>
+
+        [TestMethod]
+        public void UpdateEntry_BY_API()
+        {
+            RestRequest request = new RestRequest("/AddressBook/3", Method.PUT);
+            JObject jObjectBody = new JObject();
+            jObjectBody.Add("firstName", "Pradip");
+            jObjectBody.Add("lastName", "Udgirkar");
+            jObjectBody.Add("address", "Dubai");
+            jObjectBody.Add("city", "Emirate Arab");
+            jObjectBody.Add("state", "Dubai");
+            jObjectBody.Add("zip", "444444");
+            jObjectBody.Add("phoneNumber", "9876789098");
+            jObjectBody.Add("BookName", "Friend");
+            jObjectBody.Add("BookType", "Friend");
+            jObjectBody.Add("Date", new DateTime(2020, 08, 09));
+            request.AddParameter("application/json", jObjectBody, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            addressWork dataResponse = JsonConvert.DeserializeObject<addressWork>(response.Content);
+            Assert.AreEqual("Pradip", dataResponse.firstName);
+            Assert.AreEqual("Udgirkar", dataResponse.lastName);
+            Assert.AreEqual("Dubai", dataResponse.address);
+            Assert.AreEqual("Emirate Arab", dataResponse.city);
+            Assert.AreEqual("Dubai", dataResponse.state);
+            Assert.AreEqual("444444", dataResponse.zip);
+            Assert.AreEqual("9876789098", dataResponse.phoneNumber);
+            Assert.AreEqual("Friend", dataResponse.BookName);
+            Assert.AreEqual("Friend", dataResponse.BookType);
+            Assert.AreEqual(new DateTime(2020, 08, 09), dataResponse.Date);
         }
     }
 }
