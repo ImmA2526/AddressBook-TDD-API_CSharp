@@ -1,0 +1,83 @@
+{
+  "AddressBook": [
+    {
+      "id": 1,
+      "firstName": "imran",
+      "lastName": "shaikh",
+      "city": "pune",
+      "state": "maha",
+      "zip": "3444",
+      "phoneNumber": "334"
+    },
+    {
+      "id": 2,
+      "firstName": "Prati",
+      "lastName": "Mastake",
+      "city": "pune",
+      "state": "maha",
+      "zip": "3444",
+      "phoneNumber": "334"
+    },
+    {
+      "firstName": "Pradip",
+      "lastName": "Udgirkar",
+      "address": "Dubai",
+      "city": "Emirate Arab",
+      "state": "Dubai",
+      "zip": "444444",
+      "phoneNumber": "9876789098",
+      "BookName": "Friend",
+      "BookType": "Friend",
+      "Date": "2020-08-09T00:00:00",
+      "id": 3
+    },
+    {
+      "id": 5,
+      "firstName": "Simran",
+      "lastName": "shaikh",
+      "city": "pune",
+      "state": "maha",
+      "zip": "3444",
+      "phoneNumber": "334"
+    },
+    {
+      "firstName": "Ahtesham",
+      "lastName": "Ansari",
+      "address": "Dighi",
+      "city": "Pune",
+      "state": "Maha",
+      "zip": "413512",
+      "phoneNumber": "816372829",
+      "BookName": "Friend",
+      "BookType": "Friend",
+      "Date": "2020-01-01T00:00:00",
+      "id": 6
+    },
+    {
+      "firstName": "Mohsin",
+      "lastName": "Ansari",
+      "address": "Dighi",
+      "city": "Pune",
+      "state": "Maha",
+      "zip": "413512",
+      "phoneNumber": "816372829",
+      "BookName": "Friend",
+      "BookType": "Friend",
+      "Date": "2020-01-01T00:00:00",
+      "id": 7
+    },
+    {
+      "firstName": "Nijam",
+      "lastName": "Ansari",
+      "address": "Dighi",
+      "city": "Pune",
+      "state": "Maha",
+      "zip": "413512",
+      "phoneNumber": "816372829",
+      "BookName": "Friend",
+      "BookType": "Friend",
+      "Date": "2020-01-01T00:00:00",
+      "id": 8
+    }
+  ]
+}
